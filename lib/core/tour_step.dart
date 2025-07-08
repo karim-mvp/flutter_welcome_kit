@@ -8,6 +8,9 @@ class TourStep {
   final Duration duration;
   final String? buttonLabel;
   final bool isLast;
+  final Color? buttonBackgroundColor;
+  final Color? foregroundColor;
+  final String? fontFamily;
 
   const TourStep({
     required this.key,
@@ -17,5 +20,8 @@ class TourStep {
     this.duration = const Duration(seconds: 4),
     this.buttonLabel,
     this.isLast = false,
+    this.buttonBackgroundColor,
+    this.foregroundColor,
+    this.fontFamily,
   });
 }

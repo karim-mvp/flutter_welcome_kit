@@ -14,9 +14,6 @@ class TooltipCard extends StatefulWidget {
   final Color backgroundColor;
   final Duration animationDuration;
   final Curve animationCurve;
-  final Color? buttonBackgroundColor;
-  final Color? foregroundColor;
-  final String? fontFamily;
 
   const TooltipCard({
     super.key,
@@ -27,9 +24,6 @@ class TooltipCard extends StatefulWidget {
     this.backgroundColor = Colors.white,
     this.animationDuration = const Duration(milliseconds: 400),
     this.animationCurve = Curves.easeInOut,
-    this.buttonBackgroundColor,
-    this.foregroundColor,
-    this.fontFamily,
   });
 
   @override
@@ -276,7 +270,7 @@ class _TooltipCardState extends State<TooltipCard>
                                         .titleMedium
                                         ?.copyWith(
                                           color: textColor,
-                                          fontFamily: widget.fontFamily,
+                                          fontFamily: widget.step.fontFamily,
                                         ),
                                   ),
                                 ),
@@ -296,7 +290,7 @@ class _TooltipCardState extends State<TooltipCard>
                                 context,
                               ).textTheme.bodyMedium?.copyWith(
                                     color: textColor,
-                                    fontFamily: widget.fontFamily,
+                                    fontFamily: widget.step.fontFamily,
                                   ),
                             ),
                             const SizedBox(height: 12),
@@ -307,11 +301,12 @@ class _TooltipCardState extends State<TooltipCard>
                                   onPressed: widget.onNext,
                                   style: ElevatedButton.styleFrom(
                                     backgroundColor: widget
-                                            .buttonBackgroundColor ??
+                                            .step.buttonBackgroundColor ??
                                         (isDark
                                             ? Colors.white
                                             : Theme.of(context).primaryColor),
-                                    foregroundColor: widget.foregroundColor ??
+                                    foregroundColor: widget
+                                            .step.foregroundColor ??
                                         (isDark ? Colors.black : Colors.white),
                                     shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(8),
@@ -320,7 +315,7 @@ class _TooltipCardState extends State<TooltipCard>
                                   child: Text(
                                     buttonLabel,
                                     style: TextStyle(
-                                      fontFamily: widget.fontFamily,
+                                      fontFamily: widget.step.fontFamily,
                                     ),
                                   ),
                                 ),
