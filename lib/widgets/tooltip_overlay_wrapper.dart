@@ -1,9 +1,11 @@
 // ignore_for_file: deprecated_member_use
 
 import 'dart:async';
+
 import 'package:flutter/material.dart';
-import 'tooltip_card.dart';
 import 'package:flutter_welcome_kit/core/tour_step.dart';
+
+import 'tooltip_card.dart';
 
 class TooltipOverlayWrapper extends StatefulWidget {
   final TourStep step;
@@ -56,7 +58,7 @@ class _TooltipOverlayWrapperState extends State<TooltipOverlayWrapper> {
         children: [
           Positioned.fill(
             child: Container(
-              color: Colors.black.withOpacity(0.5), // dimmed background
+              color: Colors.black.withOpacity(0.0), // dimmed background
             ),
           ),
           TooltipCard(

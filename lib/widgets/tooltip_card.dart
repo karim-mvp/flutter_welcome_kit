@@ -325,12 +325,12 @@ class _TooltipCardState extends State<TooltipCard>
                         ),
                       ),
                     ),
-                    // Arrow always on top
-                    Positioned(
-                      left: arrowOffset.dx,
-                      top: arrowOffset.dy,
-                      child: _buildArrow(arrowDir),
-                    ),
+                    // // Arrow always on top
+                    // Positioned(
+                    //   left: arrowOffset.dx,
+                    //   top: arrowOffset.dy,
+                    //   child: _buildArrow(arrowDir),
+                    // ),
                   ],
                 ),
               ),
@@ -341,68 +341,68 @@ class _TooltipCardState extends State<TooltipCard>
     );
   }
 
-  Widget _buildArrow(ArrowDirection direction) {
-    const arrowSize = 10.0; // Slightly larger arrow
-    final size = switch (direction) {
-      ArrowDirection.up || ArrowDirection.down => const Size(16, arrowSize),
-      _ => const Size(arrowSize, 16),
-    };
+  // Widget _buildArrow(ArrowDirection direction) {
+  //   const arrowSize = 10.0; // Slightly larger arrow
+  //   final size = switch (direction) {
+  //     ArrowDirection.up || ArrowDirection.down => const Size(16, arrowSize),
+  //     _ => const Size(arrowSize, 16),
+  //   };
 
-    return Container(
-      // Add a small padding to prevent arrow from being clipped
-      padding: const EdgeInsets.all(1),
-      child: CustomPaint(
-        size: size,
-        painter: _ArrowPainter(
-          color: widget.step.backgroundColor,
-          direction: direction,
-        ),
-      ),
-    );
-  }
+  //   return Container(
+  //     // Add a small padding to prevent arrow from being clipped
+  //     padding: const EdgeInsets.all(1),
+  //     child: CustomPaint(
+  //       size: size,
+  //       painter: _ArrowPainter(
+  //         color: widget.step.backgroundColor,
+  //         direction: direction,
+  //       ),
+  //     ),
+  //   );
+  // }
 }
 
-class _ArrowPainter extends CustomPainter {
-  final Color color;
-  final ArrowDirection direction;
+// class _ArrowPainter extends CustomPainter {
+//   final Color color;
+//   final ArrowDirection direction;
 
-  _ArrowPainter({required this.color, required this.direction});
+//   _ArrowPainter({required this.color, required this.direction});
 
-  @override
-  void paint(Canvas canvas, Size size) {
-    final path = Path();
-    final paint = Paint()
-      ..color = color
-      ..style = PaintingStyle.fill
-      ..strokeWidth = 1.0
-      ..isAntiAlias = true; // Smoother edges
+//   @override
+//   void paint(Canvas canvas, Size size) {
+//     final path = Path();
+//     final paint = Paint()
+//       ..color = color
+//       ..style = PaintingStyle.fill
+//       ..strokeWidth = 1.0
+//       ..isAntiAlias = true; // Smoother edges
 
-    switch (direction) {
-      case ArrowDirection.up:
-        path.moveTo(0, size.height);
-        path.lineTo(size.width / 2, 0);
-        path.lineTo(size.width, size.height);
-        break;
-      case ArrowDirection.down:
-        path.moveTo(0, 0);
-        path.lineTo(size.width / 2, size.height);
-        path.lineTo(size.width, 0);
-        break;
-      case ArrowDirection.left:
-        path.moveTo(size.width, 0);
-        path.lineTo(0, size.height / 2);
-        path.lineTo(size.width, size.height);
-        break;
-      case ArrowDirection.right:
-        path.moveTo(0, 0);
-        path.lineTo(size.width, size.height / 2);
-        path.lineTo(0, size.height);
-        break;
-    }
-    path.close();
-    canvas.drawPath(path, paint);
-  }
+//     switch (direction) {
+//       case ArrowDirection.up:
+//         path.moveTo(0, size.height);
+//         path.lineTo(size.width / 2, 0);
+//         path.lineTo(size.width, size.height);
+//         break;
+//       case ArrowDirection.down:
+//         path.moveTo(0, 0);
+//         path.lineTo(size.width / 2, size.height);
+//         path.lineTo(size.width, 0);
+//         break;
+//       case ArrowDirection.left:
+//         path.moveTo(size.width, 0);
+//         path.lineTo(0, size.height / 2);
+//         path.lineTo(size.width, size.height);
+//         break;
+//       case ArrowDirection.right:
+//         path.moveTo(0, 0);
+//         path.lineTo(size.width, size.height / 2);
+//         path.lineTo(0, size.height);
+//         break;
+//     }
+//     path.close();
+//     canvas.drawPath(path, paint);
+//   }
 
-  @override
-  bool shouldRepaint(CustomPainter oldDelegate) => false;
-}
+//   @override
+//   bool shouldRepaint(CustomPainter oldDelegate) => false;
+// }
