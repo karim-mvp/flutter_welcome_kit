@@ -14,11 +14,14 @@ class Spotlight extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CustomPaint(
-      size: MediaQuery.of(context).size,
-      painter: _SpotlightPainter(
-        target: targetRect.inflate(padding),
-        color: overlayColor,
+    return GestureDetector(
+      onTap: () {}, // absorb taps
+      child: CustomPaint(
+        size: MediaQuery.of(context).size,
+        painter: _SpotlightPainter(
+          target: targetRect.inflate(padding),
+          color: overlayColor,
+        ),
       ),
     );
   }
