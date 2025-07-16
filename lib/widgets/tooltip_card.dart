@@ -191,15 +191,15 @@ class _TooltipCardState extends State<TooltipCard>
       },
       child: Stack(
         children: [
-          GestureDetector(
-            onTap: widget.onSkip,
-            behavior: HitTestBehavior.translucent,
-            child: Container(
-              width: screenSize.width,
-              height: screenSize.height,
-              color: Colors.transparent,
-            ),
-          ),
+          // GestureDetector(
+          //   onTap: widget.onSkip,
+          //   behavior: HitTestBehavior.translucent,
+          //   child: Container(
+          //     width: screenSize.width,
+          //     height: screenSize.height,
+          //     color: Colors.transparent,
+          //   ),
+          // ),
           Positioned(
             top: position.dy,
             left: position.dx,
@@ -274,13 +274,6 @@ class _TooltipCardState extends State<TooltipCard>
                                         ),
                                   ),
                                 ),
-                                IconButton(
-                                  onPressed: widget.onSkip,
-                                  icon: const Icon(Icons.close),
-                                  splashRadius: 20,
-                                  tooltip: 'Close',
-                                  color: textColor,
-                                ),
                               ],
                             ),
                             const SizedBox(height: 8),
@@ -297,27 +290,39 @@ class _TooltipCardState extends State<TooltipCard>
                             Row(
                               mainAxisAlignment: MainAxisAlignment.end,
                               children: [
-                                ElevatedButton(
-                                  onPressed: widget.onNext,
-                                  style: ElevatedButton.styleFrom(
-                                    backgroundColor: widget
-                                            .step.buttonBackgroundColor ??
-                                        (isDark
-                                            ? Colors.white
-                                            : Theme.of(context).primaryColor),
-                                    foregroundColor: widget
-                                            .step.foregroundColor ??
-                                        (isDark ? Colors.black : Colors.white),
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(8),
+                                Expanded(
+                                  child: ElevatedButton(
+                                    onPressed: widget.onNext,
+                                    style: ElevatedButton.styleFrom(
+                                      backgroundColor: widget
+                                              .step.buttonBackgroundColor ??
+                                          (isDark
+                                              ? Colors.white
+                                              : Theme.of(context).primaryColor),
+                                      foregroundColor: widget
+                                              .step.foregroundColor ??
+                                          (isDark ? Colors.black : Colors.white),
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(8),
+                                      ),
+                                    ),
+                                    child: Text(
+                                      buttonLabel,
+                                      style: TextStyle(
+                                        fontFamily: widget.step.fontFamily,
+                                      ),
                                     ),
                                   ),
+                                ),
+                                TextButton(
+                                  onPressed: widget.onSkip,
                                   child: Text(
-                                    buttonLabel,
+                                   widget.step. skipText ?? "Skip",
                                     style: TextStyle(
                                       fontFamily: widget.step.fontFamily,
                                     ),
                                   ),
+                                 
                                 ),
                               ],
                             ),

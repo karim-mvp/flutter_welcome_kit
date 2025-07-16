@@ -10,6 +10,8 @@ class TourStep {
   final bool isLast;
   final Color? buttonBackgroundColor;
   final Color? foregroundColor;
+  final String? skipText;
+  final Color? skipColor;
   final String? fontFamily;
 
   const TourStep({
@@ -22,6 +24,8 @@ class TourStep {
     this.isLast = false,
     this.buttonBackgroundColor,
     this.foregroundColor,
+    this.skipColor,
+    this.skipText,
     this.fontFamily,
   });
 }
