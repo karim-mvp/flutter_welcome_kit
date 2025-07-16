@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_welcome_kit/core/tour_step.dart';
+import 'package:flutter_welcome_kit/widgets/spotlight.dart';
 import 'package:flutter_welcome_kit/widgets/tooltip_card.dart';
 
 class TourController {
@@ -54,14 +55,18 @@ class TourController {
     _overlayEntry = OverlayEntry(
       builder: (context) => Stack(
         children: [
-          // Spotlight(targetRect: target),
           Positioned.fill(
-            child: Container(
-              height: MediaQuery.of(context).size.height,
-              width: MediaQuery.of(context).size.width,
-              color: Color.fromRGBO(0, 0, 0, 0.7),
+            // <- ensures full-screen coverage
+            child: GestureDetector(
+              behavior: HitTestBehavior.opaque,
+              onTap: () {
+                print('[Overlay] Background tapped');
+                // Do nothing — absorb tap
+              },
+              child: const SizedBox.shrink(),
             ),
           ),
+          Spotlight(targetRect: target),
           TooltipCard(
             step: step,
             targetRect: target,
