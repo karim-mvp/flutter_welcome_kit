@@ -53,17 +53,58 @@ class TourController {
     final target = renderBox.localToGlobal(Offset.zero) & renderBox.size;
 
     _overlayEntry = OverlayEntry(
-      builder: (context) => Stack(
-        children: [
-          Spotlight(targetRect: target),
-          TooltipCard(
-            step: step,
-            targetRect: target,
-            onNext: next,
-            onSkip: end,
-          ),
-        ],
-      ),
+      builder: (context) {
+        final inflated = target.inflate(8.0); // same padding used in Spotlight
+
+        return Stack(
+          children: [
+            // 1. Fullscreen tap-blocker
+            Positioned.fill(
+              child: GestureDetector(
+                behavior: HitTestBehavior.opaque,
+                onTap: () {
+                  // DO NOTHING — absorb all taps
+                  print('[Overlay] blocked tap');
+                },
+                child: const SizedBox(),
+              ),
+            ),
+
+            // 2. Draw the spotlight visuals (not using real hole)
+            CustomPaint(
+              size: MediaQuery.of(context).size,
+              painter: SpotlightPainter(
+                target: inflated,
+                color: const Color.fromRGBO(0, 0, 0, 0.7),
+              ),
+            ),
+
+            // 3. Tap-blocker over the spotlight hole
+            Positioned(
+              left: inflated.left,
+              top: inflated.top,
+              width: inflated.width,
+              height: inflated.height,
+              child: GestureDetector(
+                behavior: HitTestBehavior.translucent,
+                onTap: () {
+                  // Also block tap inside spotlight hole
+                  print('[Overlay] blocked tap inside hole');
+                },
+                child: const SizedBox(),
+              ),
+            ),
+
+            // 4. The TooltipCard that allows interaction
+            TooltipCard(
+              step: step,
+              targetRect: target,
+              onNext: next,
+              onSkip: end,
+            ),
+          ],
+        );
+      },
     );
 
     overlay.insert(_overlayEntry!);

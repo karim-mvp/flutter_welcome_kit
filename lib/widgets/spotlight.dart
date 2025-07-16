@@ -18,7 +18,7 @@ class Spotlight extends StatelessWidget {
       onTap: () {}, // absorb taps
       child: CustomPaint(
         size: MediaQuery.of(context).size,
-        painter: _SpotlightPainter(
+        painter: SpotlightPainter(
           target: targetRect.inflate(padding),
           color: overlayColor,
         ),
@@ -27,11 +27,11 @@ class Spotlight extends StatelessWidget {
   }
 }
 
-class _SpotlightPainter extends CustomPainter {
+class SpotlightPainter extends CustomPainter {
   final Rect target;
   final Color color;
 
-  _SpotlightPainter({required this.target, required this.color});
+  SpotlightPainter({required this.target, required this.color});
 
   @override
   void paint(Canvas canvas, Size size) {
