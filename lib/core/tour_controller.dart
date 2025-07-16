@@ -55,18 +55,16 @@ class TourController {
     _overlayEntry = OverlayEntry(
       builder: (context) => Stack(
         children: [
-          Positioned.fill(
-            // <- ensures full-screen coverage
-            child: GestureDetector(
-              behavior: HitTestBehavior.opaque,
-              onTap: () {
-                print('[Overlay] Background tapped');
-                // Do nothing — absorb tap
-              },
-              child: const SizedBox.shrink(),
-            ),
+          // This will *fully block* interaction below
+          ModalBarrier(
+            dismissible: false, // prevent auto close
+            color: Colors.black.withOpacity(0.7),
           ),
+
+          // Spotlight still handles the "hole" visuals
           Spotlight(targetRect: target),
+
+          // The tooltip content
           TooltipCard(
             step: step,
             targetRect: target,
