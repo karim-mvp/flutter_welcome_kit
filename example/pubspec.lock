@@ -78,10 +78,11 @@ packages:
   flutter_welcome_kit:
     dependency: "direct main"
     description:
-      name: flutter_welcome_kit
-      sha256: f7f88ea44080e23937e9e9ce207c585ae4895e1fae37e22423a55824fcc6213f
-      url: "https://pub.dev"
-    source: hosted
+      path: "."
+      ref: HEAD
+      resolved-ref: "90831b5954ec583f544359ed043bc06bd637b689"
+      url: "https://github.com/karim-mvp/flutter_welcome_kit.git"
+    source: git
     version: "1.0.0"
   leak_tracker:
     dependency: transitive
