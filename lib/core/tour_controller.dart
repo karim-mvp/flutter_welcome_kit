@@ -55,7 +55,7 @@ class TourController {
     _overlayEntry = OverlayEntry(
       builder: (context) => Stack(
         children: [
-          Spotlight(targetRect: target),
+          // Spotlight(targetRect: target),
           TooltipCard(
             step: step,
             targetRect: target,
