@@ -14,16 +14,35 @@ class Spotlight extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      behavior: HitTestBehavior.opaque,
-      onTap: () {},
-      child: CustomPaint(
-        size: MediaQuery.of(context).size,
-        painter: _SpotlightPainter(
-          target: targetRect.inflate(padding),
-          color: overlayColor,
+    return Stack(
+      children: [
+        // Fullscreen gesture blocker
+        GestureDetector(
+          behavior: HitTestBehavior.opaque,
+          onTap: () {}, // absorb tap
+          child: Container(color: Colors.transparent),
         ),
-      ),
+        // The visual spotlight
+        CustomPaint(
+          size: MediaQuery.of(context).size,
+          painter: _SpotlightPainter(
+            target: targetRect.inflate(padding),
+            color: overlayColor,
+          ),
+        ),
+        // An invisible box over the spotlight cutout that blocks taps
+        Positioned(
+          left: targetRect.left - padding,
+          top: targetRect.top - padding,
+          width: targetRect.width + 2 * padding,
+          height: targetRect.height + 2 * padding,
+          child: GestureDetector(
+            behavior: HitTestBehavior.translucent,
+            onTap: () {}, // absorb tap inside the spotlight hole
+            child: Container(color: Colors.transparent),
+          ),
+        ),
+      ],
     );
   }
 }
