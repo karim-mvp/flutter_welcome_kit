@@ -15,6 +15,7 @@ class Spotlight extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
+      behavior: HitTestBehavior.opaque,
       onTap: () {}, // absorb taps
       child: CustomPaint(
         size: MediaQuery.of(context).size,
