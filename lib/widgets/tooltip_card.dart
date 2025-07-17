@@ -299,9 +299,11 @@ class _TooltipCardState extends State<TooltipCard>
                                           (isDark
                                               ? Colors.white
                                               : Theme.of(context).primaryColor),
-                                      foregroundColor: widget
-                                              .step.foregroundColor ??
-                                          (isDark ? Colors.black : Colors.white),
+                                      foregroundColor:
+                                          widget.step.foregroundColor ??
+                                              (isDark
+                                                  ? Colors.black
+                                                  : Colors.white),
                                       shape: RoundedRectangleBorder(
                                         borderRadius: BorderRadius.circular(8),
                                       ),
@@ -317,12 +319,12 @@ class _TooltipCardState extends State<TooltipCard>
                                 TextButton(
                                   onPressed: widget.onSkip,
                                   child: Text(
-                                   widget.step. skipText ?? "Skip",
+                                    widget.step.skipText ?? "Skip",
                                     style: TextStyle(
                                       fontFamily: widget.step.fontFamily,
+                                      color: widget.step.skipColor ?? null,
                                     ),
                                   ),
-                                 
                                 ),
                               ],
                             ),
