@@ -8,6 +8,7 @@ import 'package:flutter_welcome_kit/core/tour_step.dart';
 import 'tooltip_card.dart';
 
 class TooltipOverlayWrapper extends StatefulWidget {
+  final bool isLastStep;
   final TourStep step;
   final Rect targetRect;
   final VoidCallback onNext;
@@ -15,6 +16,7 @@ class TooltipOverlayWrapper extends StatefulWidget {
 
   const TooltipOverlayWrapper({
     super.key,
+    required this.isLastStep,
     required this.step,
     required this.targetRect,
     required this.onNext,
@@ -62,6 +64,7 @@ class _TooltipOverlayWrapperState extends State<TooltipOverlayWrapper> {
             ),
           ),
           TooltipCard(
+            isLastStep: widget.isLastStep,
             step: widget.step,
             targetRect: widget.targetRect,
             onNext: widget.onNext,

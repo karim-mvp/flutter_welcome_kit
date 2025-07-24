@@ -47,6 +47,7 @@ class TourController {
     final step = steps[_currentStepIndex];
     final renderBox = step.key.currentContext?.findRenderObject() as RenderBox?;
     final overlay = Overlay.of(context);
+    final isLastStep = _currentStepIndex == steps.length - 1;
 
     if (renderBox == null) return;
 
@@ -97,6 +98,7 @@ class TourController {
 
             // 4. The TooltipCard that allows interaction
             TooltipCard(
+              isLastStep: isLastStep,
               step: step,
               targetRect: target,
               onNext: next,

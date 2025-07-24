@@ -7,6 +7,7 @@ import 'package:flutter_welcome_kit/core/tour_step.dart';
 enum ArrowDirection { up, down, left, right }
 
 class TooltipCard extends StatefulWidget {
+  final bool isLastStep;
   final TourStep step;
   final Rect targetRect;
   final VoidCallback onNext;
@@ -17,6 +18,7 @@ class TooltipCard extends StatefulWidget {
 
   const TooltipCard({
     super.key,
+    required this.isLastStep,
     required this.step,
     required this.targetRect,
     required this.onNext,
@@ -294,11 +296,11 @@ class _TooltipCardState extends State<TooltipCard>
                                   child: ElevatedButton(
                                     onPressed: widget.onNext,
                                     style: ElevatedButton.styleFrom(
-                                      backgroundColor: widget
+                                      backgroundColor: widget.isLastStep ? Colors.green : ( widget
                                               .step.buttonBackgroundColor ??
                                           (isDark
                                               ? Colors.white
-                                              : Theme.of(context).primaryColor),
+                                              : Theme.of(context).primaryColor)),
                                       foregroundColor:
                                           widget.step.foregroundColor ??
                                               (isDark
@@ -309,20 +311,26 @@ class _TooltipCardState extends State<TooltipCard>
                                       ),
                                     ),
                                     child: Text(
-                                      buttonLabel,
+                                      widget.isLastStep
+                                          ? (widget.step.finishLabel ??
+                                              "Finish")
+                                          : buttonLabel,
                                       style: TextStyle(
                                         fontFamily: widget.step.fontFamily,
                                       ),
                                     ),
                                   ),
                                 ),
-                                TextButton(
-                                  onPressed: widget.onSkip,
-                                  child: Text(
-                                    widget.step.skipText ?? "Skip",
-                                    style: TextStyle(
-                                      fontFamily: widget.step.fontFamily,
-                                      color: widget.step.skipColor ?? null,
+                                Visibility(
+                                  visible: !widget.isLastStep,
+                                  child: TextButton(
+                                    onPressed: widget.onSkip,
+                                    child: Text(
+                                      widget.step.skipText ?? "Skip",
+                                      style: TextStyle(
+                                        fontFamily: widget.step.fontFamily,
+                                        color: widget.step.skipColor ?? null,
+                                      ),
                                     ),
                                   ),
                                 ),

@@ -7,6 +7,7 @@ class TourStep {
   final Color backgroundColor;
   final Duration duration;
   final String? buttonLabel;
+  final String? finishLabel;
   final bool isLast;
   final Color? buttonBackgroundColor;
   final Color? foregroundColor;
@@ -21,6 +22,7 @@ class TourStep {
     this.backgroundColor = Colors.white,
     this.duration = const Duration(seconds: 4),
     this.buttonLabel,
+    this.finishLabel,
     this.isLast = false,
     this.buttonBackgroundColor,
     this.foregroundColor,
