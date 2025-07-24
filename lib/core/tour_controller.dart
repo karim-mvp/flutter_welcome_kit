@@ -41,6 +41,14 @@ class TourController {
     _overlayEntry = null;
   }
 
+  Color get dimmingColor {
+    if (steps.isNotEmpty) {
+      return steps.first.dimColor ?? const Color.fromRGBO(0, 0, 0, 0.7);
+    }
+
+    return const Color.fromRGBO(0, 0, 0, 0.7);
+  }
+
   void _showStep() {
     _overlayEntry?.remove();
 
@@ -76,7 +84,7 @@ class TourController {
               size: MediaQuery.of(context).size,
               painter: SpotlightPainter(
                 target: inflated,
-                color: const Color.fromRGBO(0, 0, 0, 0.7),
+                color: dimmingColor,
               ),
             ),
 

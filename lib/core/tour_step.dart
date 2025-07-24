@@ -14,6 +14,7 @@ class TourStep {
   final String? skipText;
   final Color? skipColor;
   final String? fontFamily;
+  final Color? dimColor;
 
   const TourStep({
     required this.key,
@@ -29,5 +30,6 @@ class TourStep {
     this.skipColor,
     this.skipText,
     this.fontFamily,
+    this.dimColor,
   });
 }
