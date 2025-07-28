@@ -296,11 +296,14 @@ class _TooltipCardState extends State<TooltipCard>
                                   child: ElevatedButton(
                                     onPressed: widget.onNext,
                                     style: ElevatedButton.styleFrom(
-                                      backgroundColor: widget.isLastStep ? Colors.green : ( widget
-                                              .step.buttonBackgroundColor ??
-                                          (isDark
-                                              ? Colors.white
-                                              : Theme.of(context).primaryColor)),
+                                      backgroundColor: widget.isLastStep
+                                          ? Colors.green
+                                          : (widget
+                                                  .step.buttonBackgroundColor ??
+                                              (isDark
+                                                  ? Colors.white
+                                                  : Theme.of(context)
+                                                      .primaryColor)),
                                       foregroundColor:
                                           widget.step.foregroundColor ??
                                               (isDark
@@ -323,8 +326,15 @@ class _TooltipCardState extends State<TooltipCard>
                                 ),
                                 Visibility(
                                   visible: !widget.isLastStep,
-                                  child: TextButton(
+                                  child: ElevatedButton(
                                     onPressed: widget.onSkip,
+                                    style: ElevatedButton.styleFrom(
+                                      backgroundColor: Colors.grey.shade300,
+                                      foregroundColor: Colors.grey.shade300,
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(8),
+                                      ),
+                                    ),
                                     child: Text(
                                       widget.step.skipText ?? "Skip",
                                       style: TextStyle(
