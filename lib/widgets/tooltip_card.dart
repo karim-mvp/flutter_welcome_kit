@@ -326,6 +326,12 @@ class _TooltipCardState extends State<TooltipCard>
                                 ),
                                 Visibility(
                                   visible: !widget.isLastStep,
+                                  child: const SizedBox(
+                                    width: 10,
+                                  ),
+                                ),
+                                Visibility(
+                                  visible: !widget.isLastStep,
                                   child: ElevatedButton(
                                     onPressed: widget.onSkip,
                                     style: ElevatedButton.styleFrom(
